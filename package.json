@@ -1,0 +1,27 @@
+{
+  "name": "movies-api",
+  "version": "1.0.0",
+  "description": "This is the project containing all movies-API microservices - Its meant to have only dev configurations that will be used in all services",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasCarvalho569/movies-API.git"
+  },
+  "keywords": [
+    "movies-api",
+    "microservices"
+  ],
+  "author": "Lucas Carvalho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/users/LucasCarvalho569/projects/1"
+  },
+  "homepage": "https://github.com/LucasCarvalho569/movies-API#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "lerna": "^3.20.2",
+    "prettier": "^1.19.1"
+  }
+}
