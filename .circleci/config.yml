@@ -4,11 +4,7 @@ jobs:
     docker:
       - image: circleci/node:latest
 
-    working_directory: ~/project
-
     steps:
-      - attach_workspace:
-          at: ~/project
       - run: npm install
       - run: npm run lint
       - run: npm run prettier
