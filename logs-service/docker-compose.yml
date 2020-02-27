@@ -1,0 +1,42 @@
+version: '3.7'
+services:
+  db:
+    image: mongo
+    restart: always
+    container_name: logs_db
+    ports:
+      - 27017:27017
+    networks:
+      - movies_api
+    volumes:
+      - mongo:/var/lib/mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: logs
+      TZ: GMT
+
+  api:
+    image: logs_service
+    container_name: logs_service
+    build:
+      context: .
+      dockerfile: dockerfile
+    volumes:
+      - /var/www/node_modules
+      - .:/var/www
+    ports:
+      - 3002:3002
+    networks:
+      - movies_api
+    env_file:
+      - .env
+    environment:
+      PORT: 3002
+      DB_HOST: db
+
+volumes:
+  mongo:
+
+networks:
+  movies_api:
