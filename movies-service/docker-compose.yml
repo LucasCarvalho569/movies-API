@@ -1,0 +1,42 @@
+version: '3.7'
+services:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    container_name: catalog_db
+    ports:
+      - 3306:3306
+    networks:
+      - movies_api
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: catalog
+      TZ: GMT
+
+  api:
+    image: movies_service
+    container_name: movies_service
+    build:
+      context: .
+      dockerfile: dockerfile
+    volumes:
+      - /var/www/node_modules
+      - .:/var/www
+    ports:
+      - 3001:3001
+    networks:
+      - movies_api
+    env_file:
+      - .env
+    environment:
+      PORT: 3001
+      DB_HOST: db
+
+volumes:
+  mysql:
+
+networks:
+  movies_api:
