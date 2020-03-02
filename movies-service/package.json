@@ -2,9 +2,9 @@
   "name": "movies-service",
   "version": "1.0.0",
   "description": "This is the microservice related to movies",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Lucas Carvalho",
@@ -13,6 +13,7 @@
     "nodemon": "^2.0.2"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1"
   }
