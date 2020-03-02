@@ -27,6 +27,8 @@ services:
       - .:/var/www
     ports:
       - 3002:3002
+    depends_on:
+      - db
     networks:
       - movies_api
     env_file:
