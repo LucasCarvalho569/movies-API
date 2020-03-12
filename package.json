@@ -5,7 +5,7 @@
   "main": "proxy.js",
   "scripts": {
     "start": "node proxy.js",
-    "prettier": "prettier --check ./**/*.js",
+    "prettier": "prettier --check \"**/*.js\"",
     "lint": "eslint \"**/*.js\""
   },
   "repository": {
