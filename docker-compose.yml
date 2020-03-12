@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  proxy:
+    image: api_gateway
+    container_name: api_gateway
+    build:
+      context: .
+      dockerfile: dockerfile
+    volumes:
+      - /var/www/node_modules
+      - .:/var/www
+    ports:
+      - 3000:3000
+    networks:
+      - movies_api
+    env_file:
+      - .env
+    environment:
+      PORT: 3000
+
+networks:
+  movies_api:
