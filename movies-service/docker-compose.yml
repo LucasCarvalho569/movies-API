@@ -7,8 +7,6 @@ services:
     container_name: catalog_db
     ports:
       - 3306:3306
-    networks:
-      - movies_api
     volumes:
       - mysql:/var/lib/mysql
     environment:
@@ -29,16 +27,16 @@ services:
       - 3001:3001
     depends_on:
       - db
-    networks:
-      - movies_api
     env_file:
       - .env
     environment:
       PORT: 3001
-      DB_HOST: db
+      MYSQL_URL: db
 
 volumes:
   mysql:
 
 networks:
-  movies_api:
+  default:
+    external:
+      name: movies-api_movies_api

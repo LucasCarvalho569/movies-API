@@ -6,8 +6,6 @@ services:
     container_name: logs_db
     ports:
       - 27017:27017
-    networks:
-      - movies_api
     volumes:
       - mongo:/var/lib/mongo
     environment:
@@ -29,16 +27,16 @@ services:
       - 3002:3002
     depends_on:
       - db
-    networks:
-      - movies_api
     env_file:
       - .env
     environment:
       PORT: 3002
-      DB_HOST: db
+      MONGO_URL: db
 
 volumes:
   mongo:
 
 networks:
-  movies_api:
+  default:
+    external:
+      name: movies-api_movies_api

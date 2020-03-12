@@ -1,11 +1,12 @@
 {
   "name": "movies-api",
   "version": "1.0.0",
-  "description": "This is the project containing all movies-API microservices - Its meant to have only dev configurations that will be used in all services",
-  "main": "index.js",
+  "description": "This is the project containing all movies-API microservices",
+  "main": "proxy.js",
   "scripts": {
+    "start": "node proxy.js",
     "prettier": "prettier --check ./**/*.js",
-    "lint": "eslint ./**/*.js"
+    "lint": "eslint \"**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,10 @@
     "lerna": "^3.20.2",
     "prettier": "^1.19.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-http-proxy": "^1.6.0",
+    "parser": "^0.1.4"
+  }
 }

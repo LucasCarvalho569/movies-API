@@ -1,7 +1,6 @@
 const router = require('express').Router();
 
-router.get('/', (req, res) => {
-  console.log('bateu');
+router.get('/users/get', (req, res) => {
   res.json({ message: 'ok from users' });
 });
 
