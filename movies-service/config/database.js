@@ -7,7 +7,8 @@ module.exports = {
     database: enviroment.dbName,
     host: enviroment.dbHost,
     dialect: 'mysql',
-    operatorsAliases: 0
+    operatorsAliases: 0,
+    seederStorage: 'sequelize'
   },
   test: {
     username: enviroment.dbUser,
