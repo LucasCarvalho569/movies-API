@@ -1,5 +1,5 @@
 const express = require('express');
-const enviroment = require('../enviroment');
+const enviroment = require('../config/enviroment');
 const app = express();
 const bodyParser = require('body-parser');
 const router = require('./routes/index');
