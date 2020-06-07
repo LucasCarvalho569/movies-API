@@ -6,6 +6,7 @@ module.exports = {
     password: enviroment.dbPassword,
     database: enviroment.dbName,
     host: enviroment.dbHost,
+    port: enviroment.dbPort,
     dialect: 'mysql',
     operatorsAliases: 0,
     seederStorage: 'sequelize'
@@ -15,6 +16,7 @@ module.exports = {
     password: enviroment.dbPassword,
     database: enviroment.dbName,
     host: enviroment.dbHost,
+    port: enviroment.dbPort,
     dialect: 'mysql',
     operatorsAliases: 0
   },
@@ -23,6 +25,7 @@ module.exports = {
     password: enviroment.dbPassword,
     database: enviroment.dbName,
     host: enviroment.dbHost,
+    port: enviroment.dbPort,
     dialect: 'mysql',
     operatorsAliases: 0
   }
