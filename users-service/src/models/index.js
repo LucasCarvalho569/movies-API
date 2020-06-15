@@ -7,7 +7,7 @@ const sequelize = new Sequelize(
   enviroment.dbName,
   enviroment.dbUser,
   enviroment.dbPassword,
-  { dialect: 'mysql' }
+  { dialect: 'mysql', port: enviroment.dbPort }
 );
 const models = [];
 
