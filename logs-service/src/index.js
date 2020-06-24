@@ -3,12 +3,13 @@ const enviroment = require('../config/enviroment');
 const app = express();
 const mongoose = require('mongoose');
 
-const mongodbUri = `mongodb://${enviroment.dbHost}:${enviroment.dbPort}/${enviroment.dbName}`;
+const mongodbUri = `mongodb://${enviroment.dbUser}:${enviroment.dbPassword}@${enviroment.dbHost}:${enviroment.dbPort}/${enviroment.dbName}`;
 
 mongoose
   .connect(mongodbUri, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    authSource: 'admin'
   })
   .then(() => {
     app.listen(enviroment.port, () => {
