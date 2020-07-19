@@ -1,9 +1,9 @@
 const express = require('express');
-const enviroment = require('../config/enviroment');
+const environment = require('../config/environment');
 const app = express();
 const mongoose = require('mongoose');
 
-const mongodbUri = `mongodb://${enviroment.dbUser}:${enviroment.dbPassword}@${enviroment.dbHost}:${enviroment.dbPort}/${enviroment.dbName}`;
+const mongodbUri = `mongodb://${environment.dbUser}:${environment.dbPassword}@${environment.dbHost}:${environment.dbPort}/${environment.dbName}`;
 
 mongoose
   .connect(mongodbUri, {
@@ -12,8 +12,12 @@ mongoose
     authSource: 'admin'
   })
   .then(() => {
-    app.listen(enviroment.port, () => {
-      console.log('-- logs service running on port ' + enviroment.port);
+    app.listen(environment.port, () => {
+      console.log(
+        '-- logs service running on port ' +
+          environment.port +
+          environment.environment
+      );
     });
   })
   .catch(error => console.log(error));

@@ -1,31 +1,31 @@
-const enviroment = require('./enviroment');
+const environment = require('./environment');
 
 module.exports = {
   development: {
-    username: enviroment.dbUser,
-    password: enviroment.dbPassword,
-    database: enviroment.dbName,
-    host: enviroment.dbHost,
-    port: enviroment.dbPort,
+    username: environment.dbUser,
+    password: environment.dbPassword,
+    database: environment.dbName,
+    host: environment.dbHost,
+    port: environment.dbPort,
     dialect: 'mysql',
     operatorsAliases: 0,
     seederStorage: 'sequelize'
   },
   test: {
-    username: enviroment.dbUser,
-    password: enviroment.dbPassword,
-    database: enviroment.dbName,
-    host: enviroment.dbHost,
-    port: enviroment.dbPort,
+    username: environment.dbUser,
+    password: environment.dbPassword,
+    database: environment.dbName,
+    host: environment.dbHost,
+    port: environment.dbPort,
     dialect: 'mysql',
     operatorsAliases: 0
   },
   production: {
-    username: enviroment.dbUser,
-    password: enviroment.dbPassword,
-    database: enviroment.dbName,
-    host: enviroment.dbHost,
-    port: enviroment.dbPort,
+    username: environment.dbUser,
+    password: environment.dbPassword,
+    database: environment.dbName,
+    host: environment.dbHost,
+    port: environment.dbPort,
     dialect: 'mysql',
     operatorsAliases: 0
   }
