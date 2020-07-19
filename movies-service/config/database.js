@@ -18,7 +18,8 @@ module.exports = {
     host: environment.dbHost,
     port: environment.dbPort,
     dialect: 'mysql',
-    operatorsAliases: 0
+    operatorsAliases: 0,
+    seederStorage: 'sequelize'
   },
   production: {
     username: environment.dbUser,
@@ -27,6 +28,7 @@ module.exports = {
     host: environment.dbHost,
     port: environment.dbPort,
     dialect: 'mysql',
-    operatorsAliases: 0
+    operatorsAliases: 0,
+    seederStorage: 'sequelize'
   }
 };
