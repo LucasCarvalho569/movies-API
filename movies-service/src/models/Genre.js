@@ -9,7 +9,16 @@ module.exports = (sequelize, DataTypes) => {
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          isAlpha: {
+            msg: "The genre's name must contain only letters"
+          },
+          len: {
+            args: [3, 100],
+            msg: "The genre's name must have between 3 and 100 characters"
+          }
+        }
       }
     },
     { timestamps: false }
@@ -18,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
   Genre.associate = models => {
     Genre.belongsToMany(models.Movie, {
       through: 'MoviesGenres',
+      timestamps: false,
       as: 'movies',
       foreignKey: 'genreId'
     });
