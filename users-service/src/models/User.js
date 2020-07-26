@@ -9,11 +9,25 @@ module.exports = (sequelize, DataTypes) => {
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          isAlpha: {
+            msg: "The user's name must contain only letters"
+          },
+          len: {
+            args: [3, 100],
+            msg: "The user's name must have between 3 and 100 characters"
+          }
+        }
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          isEmail: {
+            msg: "The user's email is invalid"
+          }
+        }
       },
       password: {
         type: DataTypes.STRING,
