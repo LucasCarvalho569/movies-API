@@ -13,11 +13,7 @@ mongoose
   })
   .then(() => {
     app.listen(environment.port, () => {
-      console.log(
-        '-- logs service running on port ' +
-          environment.port +
-          environment.environment
-      );
+      console.log('--== logs service running ==--');
     });
   })
   .catch(error => console.log(error));

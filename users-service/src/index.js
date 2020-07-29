@@ -9,5 +9,5 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);
 
 app.listen(environment.port, () => {
-  console.log('-- users service running on port ' + environment.port);
+  console.log('--== users service running ==--');
 });

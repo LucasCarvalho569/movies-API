@@ -1,7 +1,6 @@
 const router = require('express').Router();
+const moviesRouter = require('./moviesRouter');
 
-router.get('/movies/get', (req, res) => {
-  res.json({ message: 'ok from movies' });
-});
+router.use('/movies', moviesRouter);
 
 module.exports = router;
