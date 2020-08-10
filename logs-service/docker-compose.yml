@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 services:
   db:
     image: mongo
@@ -13,6 +13,12 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: root
       MONGO_INITDB_DATABASE: logs
       TZ: GMT
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo 127.0.0.1:27017/test --quiet
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   api:
     image: logs_service
@@ -32,6 +38,11 @@ services:
     environment:
       PORT: 3002
       MONGO_URL: db
+    healthcheck:
+      test: curl --fail -s http://localhost:3002/health || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 volumes:
   mongo:

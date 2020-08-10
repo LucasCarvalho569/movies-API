@@ -13,6 +13,12 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: catalog
       TZ: GMT
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   api:
     image: movies_service
@@ -32,6 +38,11 @@ services:
     environment:
       PORT: 3001
       MYSQL_URL: db
+    healthcheck:
+      test: curl --fail -s http://localhost:3001/health || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 volumes:
   mysql:

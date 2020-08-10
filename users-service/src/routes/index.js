@@ -1,7 +1,5 @@
 const router = require('express').Router();
 
-router.get('/users/get', (req, res) => {
-  res.json({ message: 'ok from users' });
-});
+router.get('/health', (req, res) => res.sendStatus(200));
 
 module.exports = router;

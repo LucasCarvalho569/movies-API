@@ -2,7 +2,9 @@ const express = require('express');
 const environment = require('../config/environment');
 const app = express();
 const mongoose = require('mongoose');
+const router = require('./routes');
 
+app.use(router);
 const mongodbUri = `mongodb://${environment.dbUser}:${environment.dbPassword}@${environment.dbHost}:${environment.dbPort}/${environment.dbName}`;
 
 mongoose

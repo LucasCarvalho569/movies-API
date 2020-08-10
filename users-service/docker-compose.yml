@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 services:
   db:
     image: mysql
@@ -13,6 +13,12 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: credentials
       TZ: GMT
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   api:
     image: users_service
@@ -32,6 +38,11 @@ services:
     environment:
       PORT: 3003
       MYSQL_URL: db
+    healthcheck:
+      test: curl --fail -s http://localhost:3003/health || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 volumes:
   mysql:
