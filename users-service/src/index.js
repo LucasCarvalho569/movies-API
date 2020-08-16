@@ -1,13 +1,13 @@
+require('dotenv').config();
 const express = require('express');
-const environment = require('../config/environment');
-const bodyParser = require('body-parser');
 const app = express();
+const bodyParser = require('body-parser');
 const router = require('./routes/index');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);
 
-app.listen(environment.port, () => {
+app.listen(process.env.PORT, () => {
   console.log('--== users service running ==--');
 });

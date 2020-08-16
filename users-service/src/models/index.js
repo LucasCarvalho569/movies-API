@@ -1,13 +1,16 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const glob = require('glob');
 const path = require('path');
-const environment = require('../../config/environment');
+const database = require('../config/database');
 
 const sequelize = new Sequelize(
-  environment.dbName,
-  environment.dbUser,
-  environment.dbPassword,
-  { dialect: 'mysql', port: environment.dbPort }
+  database[process.env.NODE_ENV].database,
+  database[process.env.NODE_ENV].username,
+  database[process.env.NODE_ENV].password,
+  {
+    dialect: database[process.env.NODE_ENV].dialect,
+    logging: false
+  }
 );
 const models = [];
 

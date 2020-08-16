@@ -6,7 +6,7 @@ router.get('', async (req, res) => {
 });
 
 router.post('', async (req, res) => {
-  res.json(moviesService.insert(req.body));
+  res.json(await moviesService.insert(req.body));
 });
 
 module.exports = router;
