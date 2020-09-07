@@ -5,13 +5,15 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     container_name: catalog_db
+    env_file:
+      - .env
     ports:
-      - 3306:3306
+      - ${DEV_DATABASE_PORT}:3306
     volumes:
       - mysql:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: catalog
+      MYSQL_ROOT_PASSWORD: ${DEV_DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DEV_DATABASE_DATABASE}
       TZ: GMT
     healthcheck:
       test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
@@ -26,20 +28,20 @@ services:
     build:
       context: .
       dockerfile: dockerfile
+    env_file:
+      - .env
     volumes:
       - /var/www/node_modules
       - .:/var/www
     ports:
-      - 3001:3001
+      - ${PORT}:3001
     depends_on:
       - db
-    env_file:
-      - .env
     environment:
-      PORT: 3001
+      PORT: ${PORT}
       MYSQL_URL: db
     healthcheck:
-      test: curl --fail -s http://localhost:3001/health || exit 1
+      test: curl --fail -s http://localhost:${PORT}/health || exit 1
       interval: 30s
       timeout: 10s
       retries: 3
