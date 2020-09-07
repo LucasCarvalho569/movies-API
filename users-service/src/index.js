@@ -8,6 +8,4 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);
 
-app.listen(process.env.PORT, () => {
-  console.log('--== users service running ==--');
-});
+module.exports = app;
