@@ -1,8 +1,5 @@
 FROM node:13.8.0-alpine3.10
 WORKDIR /var/www
-EXPOSE 3001
 COPY package.json .
-RUN npm install
-RUN apk update
-RUN apk add curl
+RUN npm install && apk update && apk add curl
 CMD ["npm", "start"]
