@@ -9,6 +9,7 @@ const sequelize = new Sequelize(
   database[process.env.NODE_ENV].password,
   {
     dialect: database[process.env.NODE_ENV].dialect,
+    port: database[process.env.NODE_ENV].port,
     logging: false
   }
 );
