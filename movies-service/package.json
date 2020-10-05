@@ -2,11 +2,11 @@
   "name": "movies-service",
   "version": "1.0.0",
   "description": "This is the microservice related to movies",
-  "main": "src/index.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "NODE_ENV=production node src/index.js",
-    "dev": "nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=production node src/server.js",
+    "dev": "nodemon src/server.js --ignore tests",
+    "test": "jest"
   },
   "author": "Lucas Carvalho",
   "license": "ISC",
@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "faker": "^4.1.0",
+    "jest": "^26.4.2",
     "nodemon": "^2.0.2",
     "sequelize-cli": "^5.5.1"
   }

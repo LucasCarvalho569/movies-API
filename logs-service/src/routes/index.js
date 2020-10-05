@@ -1,7 +1,5 @@
-const router = require('../../../movies-service/src/routes');
+const router = require('express').Router();
 
-const routes = require('express').Router();
+router.get('/health', (req, res) => res.sendStatus(200));
 
-router.get('/log', (req, res) => {
-  res.json({ message: 'ok from logs' });
-});
+module.exports = router;

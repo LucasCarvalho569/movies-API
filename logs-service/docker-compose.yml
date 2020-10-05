@@ -1,22 +1,32 @@
-version: '3.7'
+version: "3.7"
 services:
   db:
     image: mongo
     restart: always
     container_name: logs_db
+    env_file:
+      - .env
     ports:
-      - 27017:27017
+      - ${DEV_DATABASE_PORT}:27017
     volumes:
       - mongo:/var/lib/mongo
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
-      MONGO_INITDB_DATABASE: logs
+      MONGO_INITDB_ROOT_USERNAME: ${DEV_DATABASE_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${DEV_DATABASE_PASSWORD}
+      MONGO_INITDB_DATABASE: ${DEV_DATABASE_DATABASE}
       TZ: GMT
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo 127.0.0.1:27017/test --quiet
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   api:
     image: logs_service
     container_name: logs_service
+    env_file:
+      - .env
     build:
       context: .
       dockerfile: dockerfile
@@ -24,14 +34,17 @@ services:
       - /var/www/node_modules
       - .:/var/www
     ports:
-      - 3002:3002
+      - ${PORT}:3002
     depends_on:
       - db
-    env_file:
-      - .env
     environment:
-      PORT: 3002
+      PORT: ${PORT}
       MONGO_URL: db
+    healthcheck:
+      test: curl --fail -s http://localhost:${PORT}/health || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 volumes:
   mongo:

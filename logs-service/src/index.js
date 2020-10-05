@@ -1,9 +1,16 @@
+require('dotenv').config();
 const express = require('express');
-const environment = require('../config/environment');
 const app = express();
 const mongoose = require('mongoose');
+const router = require('./routes');
+const database = require('./config/database');
 
-const mongodbUri = `mongodb://${environment.dbUser}:${environment.dbPassword}@${environment.dbHost}:${environment.dbPort}/${environment.dbName}`;
+app.use(router);
+const mongodbUri = `mongodb://${database[process.env.NODE_ENV].username}:${
+  database[process.env.NODE_ENV].password
+}@${database[process.env.NODE_ENV].host}:${
+  database[process.env.NODE_ENV].port
+}/${database[process.env.NODE_ENV].database}`;
 
 mongoose
   .connect(mongodbUri, {
@@ -12,12 +19,8 @@ mongoose
     authSource: 'admin'
   })
   .then(() => {
-    app.listen(environment.port, () => {
-      console.log(
-        '-- logs service running on port ' +
-          environment.port +
-          environment.environment
-      );
+    app.listen(process.env.PORT, () => {
+      console.log('--== logs service running ==--');
     });
   })
   .catch(error => console.log(error));

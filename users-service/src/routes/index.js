@@ -1,7 +1,10 @@
 const router = require('express').Router();
+const usersRoutes = require('./userRouter');
+const rolesRoutes = require('./roleRouter');
 
-router.get('/users/get', (req, res) => {
-  res.json({ message: 'ok from users' });
-});
+router.use('/users', usersRoutes);
+router.use('/roles', rolesRoutes);
+
+router.get('/health', (req, res) => res.sendStatus(200));
 
 module.exports = router;

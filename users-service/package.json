@@ -1,24 +1,29 @@
 {
-  "name": "movies-service",
+  "name": "users-service",
   "version": "1.0.0",
-  "description": "This is the microservice related to movies",
-  "main": "src/index.js",
+  "description": "This is the microservice related to users",
+  "main": "src/server.js",
   "scripts": {
-    "start": "NODE_ENV=production node src/index.js",
-    "dev": "nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=production node src/server.js",
+    "dev": "nodemon src/server.js --ignore tests",
+    "test": "jest --detectOpenHandles"
   },
   "author": "Lucas Carvalho",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.20.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "lodash": "^4.17.20",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.5"
   },
   "devDependencies": {
+    "jest": "^26.4.2",
     "nodemon": "^2.0.2",
-    "sequelize-cli": "^5.5.1"
+    "sequelize-cli": "^5.5.1",
+    "supertest": "^4.0.2"
   }
 }
