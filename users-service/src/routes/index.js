@@ -1,7 +1,9 @@
 const router = require('express').Router();
-const usersRouter = require('./userRouter');
+const usersRoutes = require('./userRouter');
+const rolesRoutes = require('./roleRouter');
 
-router.use('/users', usersRouter);
+router.use('/users', usersRoutes);
+router.use('/roles', rolesRoutes);
 
 router.get('/health', (req, res) => res.sendStatus(200));
 

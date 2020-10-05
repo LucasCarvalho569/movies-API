@@ -1,8 +1,8 @@
 const { User } = require('../models');
-const bcrypt = require('bcryptjs');
+const { hashSync } = require('bcryptjs');
 
 const insert = async user => {
-  user.password = bcrypt.hashSync(user.password);
+  user.password = hashSync(user.password);
   return await User.create(user);
 };
 
